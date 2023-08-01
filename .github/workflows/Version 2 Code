@@ -1,0 +1,57 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+const int WIN_NUM1 = 7;
+const int WIN_NUM2 = 11;
+const int LOSE_NUM1 = 2;
+const int LOSE_NUM2 = 3;
+const int LOSE_NUM3 = 12;
+
+int rollDice() {
+    int die1 = rand() % 6 + 1;
+    int die2 = rand() % 6 + 1;
+    return die1 + die2;
+}
+
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+    int point = 0;
+    int roll = 0;
+    bool isGameOver = false;
+
+    while (!isGameOver) {
+        roll = rollDice();
+        std::cout << "You rolled a " << roll << ".\n";
+
+        if (point == 0) {
+            switch (roll) {
+                case WIN_NUM1:
+                case WIN_NUM2:
+                    std::cout << "You win this round!\n";
+                    isGameOver = true;
+                    break;
+                case LOSE_NUM1:
+                case LOSE_NUM2:
+                case LOSE_NUM3:
+                    std::cout << "You lose this round.\n";
+                    isGameOver = true;
+                    break;
+                default:
+                    point = roll;
+                    std::cout << "Your point is " << point << ".\n";
+                    break;
+            }
+        } else {
+            if (roll == point) {
+                std::cout << "You win this round!\n";
+                isGameOver = true;
+            } else if (roll == WIN_NUM1) {
+                std::cout << "You lose this round.\n";
+                isGameOver = true;
+            }
+        }
+    }
+
+    return 0;
+}
