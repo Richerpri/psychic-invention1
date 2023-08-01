@@ -1,0 +1,16 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+int rollDice() {
+    int die1 = rand() % 6 + 1;
+    int die2 = rand() % 6 + 1;
+    return die1 + die2;
+}
+
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+    int roll = rollDice();
+    std::cout << "You rolled a " << roll << ".\n";
+    return 0;
+}
